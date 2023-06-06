@@ -1,0 +1,48 @@
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        
+        /*
+        int index1= 0, index2 = 0;
+        int n = nums.size();
+        for(int i = n-1; i>0; i--){
+            for(int j = n-1; j>0; j--){
+                if(nums[j]<nums[i+1]){
+                index1 = j;
+            }
+            }
+            if(nums[i]>nums[index1]){
+                 index2 = i;
+            }
+        }
+        swap(nums[index1],nums[index2]);
+        for(int i = index1+1; i<n; i++){
+            swap(nums[i], nums[n]);
+            i++;
+            n--;
+        }
+        
+        for(int i = 0; i<n; i++){
+            res.push_back(nums[i]);
+        }
+        for(int i = 0; i<res.size)
+        */
+        int n = nums.size() - 1, i, j;
+        for(i = n-1; i>=0; i--){   //phla break point find krne ki koshsih.. 
+            if(nums[i] < nums[i+1]){
+                break;
+            }
+        }
+        if(i<0){
+            reverse(nums.begin(), nums.end());   //agar break point nhi mili to simply just reverse the array
+        }else{
+            for(j = n; j> i; j--){   //agar phla break point mil gya to dusra break point find krne ki kosish
+                if(nums[j] > nums[i]){
+                    break;
+                }
+            }
+            swap(nums[i],nums[j]);
+            reverse(nums.begin() + i +1, nums.end()); 
+        }
+    }
+};
